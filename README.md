@@ -43,8 +43,19 @@ A WordPress admin dashboard for browsing, activating, manually triggering, and i
 
 ## Screenshots
 
-> Add your own screenshots here after installing, e.g. `screenshots/workflows-tab.png`, `screenshots/execution-logs.png`, `screenshots/node-canvas.png`.
-> Left blank intentionally in this template — avoid committing screenshots that reveal a real API key, OAuth client ID, or your production n8n URL.
+### Settings
+![Settings tab](screenshots/settings.png)
+
+### Workflows tab
+> Coming soon.
+
+### Execution Logs tab
+> Coming soon.
+
+### Node Pipeline canvas
+> Coming soon.
+
+> When adding your own screenshots, avoid committing ones that reveal a real API key, OAuth client ID, production n8n URL, or internal workflow names/data you don't want public.
 
 ## Requirements
 
