@@ -43,19 +43,17 @@ A WordPress admin dashboard for browsing, activating, manually triggering, and i
 
 ## Screenshots
 
-### Settings
-![Settings tab](screenshots/settings.png)
-
 ### Workflows tab
-> Coming soon.
+![Workflows tab](screenshots/workflows-tab.png)
 
 ### Execution Logs tab
-> Coming soon.
+![Execution Logs tab](screenshots/execution-logs.png)
 
 ### Node Pipeline canvas
-> Coming soon.
+![Node Pipeline canvas](screenshots/node-canvas.png)
 
-> When adding your own screenshots, avoid committing ones that reveal a real API key, OAuth client ID, production n8n URL, or internal workflow names/data you don't want public.
+### Settings
+![Settings tab](screenshots/settings.png)
 
 ## Requirements
 
