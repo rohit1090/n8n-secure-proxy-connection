@@ -80,7 +80,7 @@ A WordPress admin dashboard for browsing, activating, manually triggering, and i
 2. Confirm your n8n instance's Public API is reachable from your WordPress server:
    - Self-hosted: usually your instance's base URL, e.g. `https://n8n.example.com`
    - n8n Cloud: `https://<your-subdomain>.app.n8n.cloud`
-3. Set up a **Master Webhook Router** workflow (see [below](#how-trigger-workflow-actually-works-master-webhook-router)) — required for the "Trigger Workflow" button to actually do anything.
+3. Build a **Master Webhook Router** workflow — a Webhook node, an Execute Workflow node, and a Respond to Webhook node — required for the "Trigger Workflow" button to actually do anything. Full step-by-step instructions are in [How "Trigger Workflow" actually works](#how-trigger-workflow-actually-works-master-webhook-router) below.
 
 ### 2. Plugin settings
 
@@ -134,17 +134,31 @@ The plugin does **not** call each workflow's individual webhook trigger. Instead
 { "workflow_id": "abc123" }
 ```
 
-— to the one **Master Webhook Router URL** configured in Settings. This keeps the plugin simple to configure (one URL, not one per workflow), but it means you need a small routing workflow in n8n to receive that call and dispatch it to the right target workflow.
-
-A minimal router workflow looks like this:
+— to the one **Master Webhook Router URL** configured in Settings. This keeps the plugin simple to configure (one URL, not one per workflow), but it means you need a small routing workflow in n8n to receive that call and dispatch it to the right target workflow. Nothing about this router is created by the plugin — you build it once, directly in n8n, using the steps below.
 
 ```
-Webhook (POST)
+Webhook (POST, path: master-router)
   → Execute Workflow (Source: By ID, Workflow ID: {{$json.body.workflow_id}})
     → Respond to Webhook
 ```
 
-Set that workflow's **production** webhook URL as your Master Webhook Router URL in the plugin's Settings tab.
+### Building the router workflow in n8n, step by step
+
+1. In n8n, click **+ New workflow** and name it something recognizable, e.g. `Master Webhook Router`.
+2. Add a **Webhook** node as the trigger (this is the entry point the plugin will call):
+   - **HTTP Method**: `POST`
+   - **Path**: any unique slug, e.g. `master-router`
+   - **Respond**: set to `Using 'Respond to Webhook' Node`, so the response is controlled explicitly by step 4 instead of firing immediately.
+3. Add an **Execute Workflow** node and connect it after the Webhook node. This is the node that actually runs whichever workflow the plugin asked for:
+   - **Source**: `Database`
+   - **Workflow**: `By ID`
+   - **Workflow ID**: don't type a fixed ID — set this field to an expression: `{{$json.body.workflow_id}}`. This reads the `workflow_id` the plugin sent in its POST body, so one router node can dispatch to *any* workflow on the instance.
+4. Add a **Respond to Webhook** node after the Execute Workflow node, so the plugin's AJAX call gets back a clean success response instead of timing out.
+5. Save the workflow, then flip it to **Active** using the toggle in the top-right corner — an inactive router silently receives nothing, which is the #1 cause of "Trigger Workflow says success but nothing happens" (see [Troubleshooting](#troubleshooting)).
+6. Open the Webhook node and copy its **Production URL** — not the Test URL. The Test URL only listens while you have the workflow open in the editor with "Listen for test event" active; it will not work for real usage.
+7. Paste that Production URL into the plugin's **Settings → Master Webhook Router URL** field (or set it via the `N8N_MASTER_WEBHOOK` constant — see [Using constants](#3-using-constants-instead-of-the-database-recommended-for-production)) and save.
+
+Once that's done, every **Trigger Workflow** click in the Workflows tab does the following round trip: the plugin POSTs `{ "workflow_id": "<id>" }` to your router → the Webhook node receives it → the Execute Workflow node looks up and runs that specific workflow by ID → Respond to Webhook returns success back to the plugin, which shows "Triggered!" next to that workflow's card.
 
 ## Known limitations
 
