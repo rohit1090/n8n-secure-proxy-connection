@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP n8n Connector
  * Description: Securely triggers n8n workflows with activation toggles, execution logs, drag-and-drop, and modular extensions.
- * Version:     1.6.2
+ * Version:     1.7.0
  * Author:      Custom
  */
 
@@ -72,11 +72,11 @@ private function get_menu_icon() {
     public function enqueue_admin_assets($hook) {
         if ($hook !== 'toplevel_page_wp-n8n-connector') return;
 
-        wp_enqueue_style('n8n-admin-css', plugins_url('assets/css/n8n-admin.css', __FILE__), [], '1.6.2');
+        wp_enqueue_style('n8n-admin-css', plugins_url('assets/css/n8n-admin.css', __FILE__), [], '1.7.0');
         wp_enqueue_script('jquery-ui-sortable');
 
-        wp_enqueue_script('n8n-admin-js', plugins_url('assets/js/n8n-admin.js', __FILE__), ['jquery', 'jquery-ui-sortable'], '1.6.2', true);
-        wp_enqueue_script('n8n-advanced-js', plugins_url('assets/js/n8n-advanced.js', __FILE__), ['jquery', 'n8n-admin-js'], '1.6.2', true);
+        wp_enqueue_script('n8n-admin-js', plugins_url('assets/js/n8n-admin.js', __FILE__), ['jquery', 'jquery-ui-sortable'], '1.7.0', true);
+        wp_enqueue_script('n8n-advanced-js', plugins_url('assets/js/n8n-advanced.js', __FILE__), ['jquery', 'n8n-admin-js'], '1.7.0', true);
 
         wp_localize_script('n8n-admin-js', 'n8nData', [
             'ajaxurl' => admin_url('admin-ajax.php'),

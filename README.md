@@ -176,7 +176,11 @@ wp-n8n-connector/
 
 ## Changelog
 
-### Unreleased
+### 1.7.0
+- Renamed the plugin to **WP n8n Connector** (menu, dashboard heading, main file, and menu slug all updated)
+- API key is no longer echoed back into the Settings page HTML in plaintext; the field now stays blank with a placeholder and only overwrites the stored key when a new value is submitted
+- Hardened the workflow-order save endpoint against malformed/nested payloads
+- Added missing empty-`workflow_id` validation on the trigger and activate/deactivate actions
 - Replaced the default Dashicon menu icon with n8n's official logo mark (embedded as an SVG data URI)
 
 ### 1.6.2
