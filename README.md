@@ -1,4 +1,4 @@
-# Manually Trigger n8n Workflow
+# WP n8n Connector
 
 ![License](https://img.shields.io/badge/license-GPLv2%2B-blue.svg)
 ![WordPress](https://img.shields.io/badge/WordPress-5.0%2B-21759b.svg)
@@ -58,10 +58,10 @@ A WordPress admin dashboard for browsing, activating, manually triggering, and i
 ## Installation
 
 1. Download or clone this repository.
-2. Upload the `manually-trigger-n8n-workflow` folder to `/wp-content/plugins/`.
+2. Upload the `wp-n8n-connector` folder to `/wp-content/plugins/`.
    - Or zip the folder and install via **Plugins → Add New → Upload Plugin** in wp-admin.
-3. Activate **Manually Trigger n8n Workflow** from the Plugins screen.
-4. Go to **n8n Workflows → Settings** in the WordPress admin sidebar and fill in your connection details (see [Configuration](#configuration) below).
+3. Activate **WP n8n Connector** from the Plugins screen.
+4. Go to **WP n8n Connector → Settings** in the WordPress admin sidebar and fill in your connection details (see [Configuration](#configuration) below).
 
 ## Configuration
 
@@ -155,8 +155,8 @@ Set that workflow's **production** webhook URL as your Master Webhook Router URL
 ## File structure
 
 ```
-manually-trigger-n8n-workflow/
-├── manually-trigger-n8n-workflow.php    # Core: dashboard, workflow list, toggles, logs, drag-and-drop
+wp-n8n-connector/
+├── wp-n8n-connector.php                 # Core: dashboard, workflow list, toggles, logs, drag-and-drop
 ├── includes/
 │   └── n8n-advanced-features.php        # Node Pipeline canvas data proxy
 └── assets/

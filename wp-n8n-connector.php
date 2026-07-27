@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Manually Trigger n8n Workflow
+ * Plugin Name: WP n8n Connector
  * Description: Securely triggers n8n workflows with activation toggles, execution logs, drag-and-drop, and modular extensions.
  * Version:     1.6.2
  * Author:      Custom
@@ -42,10 +42,10 @@ class Manually_Trigger_N8N_Workflow {
 
   public function add_admin_menu() {
     add_menu_page(
-        'n8n Workflows',
-        'n8n Workflows',
+        'WP n8n Connector',
+        'WP n8n Connector',
         'manage_options',
-        'manually-trigger-n8n-workflow',
+        'wp-n8n-connector',
         [$this, 'render_dashboard'],
         $this->get_menu_icon(),
         25
@@ -70,7 +70,7 @@ private function get_menu_icon() {
     }
 
     public function enqueue_admin_assets($hook) {
-        if ($hook !== 'toplevel_page_manually-trigger-n8n-workflow') return;
+        if ($hook !== 'toplevel_page_wp-n8n-connector') return;
 
         wp_enqueue_style('n8n-admin-css', plugins_url('assets/css/n8n-admin.css', __FILE__), [], '1.6.2');
         wp_enqueue_script('jquery-ui-sortable');
@@ -87,7 +87,7 @@ private function get_menu_icon() {
     public function render_dashboard() {
         ?>
         <div class="wrap" style="max-width: 1000px; margin-top: 20px;">
-            <h1 style="font-size: 23px; font-weight: 600; margin-bottom: 5px;">n8n Automation Hub</h1>
+            <h1 style="font-size: 23px; font-weight: 600; margin-bottom: 5px;">WP n8n Connector</h1>
             <p style="color: #646970; margin-bottom: 20px;">Manage your automations, logs, and node pipelines.</p>
 
             <div class="n8n-tabs">
