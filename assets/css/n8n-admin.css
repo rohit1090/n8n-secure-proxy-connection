@@ -1,0 +1,30 @@
+.n8n-tabs { display: flex; border-bottom: 1px solid #ccd0d4; margin-bottom: 25px; gap: 30px; }
+.n8n-tab { padding: 10px 2px; font-size: 14px; font-weight: 600; color: #50575e; text-decoration: none; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.n8n-tab.active { color: #2271b1; border-bottom-color: #2271b1; }
+.n8n-card { background: #fff; border: 1px solid #ccd0d4; border-radius: 8px; padding: 16px 22px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; max-width: 900px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.n8n-card-left { display: flex; align-items: center; gap: 15px; }
+.n8n-drag-handle { cursor: grab; color: #a7aaad; font-size: 18px; display: flex; align-items: center; }
+.n8n-drag-handle:active { cursor: grabbing; }
+/* Switch Toggle CSS */
+.n8n-switch { position: relative; display: inline-block; width: 40px; height: 22px; }
+.n8n-switch input { opacity: 0; width: 0; height: 0; }
+.n8n-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .3s; border-radius: 22px; }
+.n8n-slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; transition: .3s; border-radius: 50%; }
+input:checked + .n8n-slider { background-color: #008a20; }
+input:checked + .n8n-slider:before { transform: translateX(18px); }
+/* Tables for Logs & Credentials */
+.n8n-log-table { width: 100%; max-width: 900px; background: #fff; border-collapse: collapse; border: 1px solid #ccd0d4; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+.n8n-log-table th, .n8n-log-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #f0f0f1; font-size: 13px; }
+.n8n-log-table th { background: #f8f9fa; font-weight: 600; color: #1d2327; }
+/* Sortable Placeholder */
+.ui-sortable-placeholder { border: 2px dashed #2271b1 !important; background: #f0f6fc !important; border-radius: 8px; visibility: visible !important; height: 74px; margin-bottom: 12px; max-width: 900px; }
+
+/* Node Pipeline Canvas */
+.n8n-canvas-controls { position: absolute; top: 10px; right: 10px; display: flex; gap: 6px; z-index: 10; }
+.n8n-canvas-viewport { position: relative; width: 100%; height: 100%; overflow: auto; background: #f8f9fa; border: 1px solid #ccd0d4; border-radius: 6px; cursor: grab; }
+.n8n-canvas-viewport.dragging { cursor: grabbing; user-select: none; }
+.n8n-canvas-inner { position: relative; transform-origin: 0 0; }
+.n8n-canvas-svg { position: absolute; top: 0; left: 0; pointer-events: none; }
+.n8n-canvas-node { position: absolute; background: #fff; border: 1px solid #ccd0d4; border-radius: 8px; padding: 8px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.n8n-canvas-node strong { display: block; font-size: 12px; color: #1d2327; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.n8n-canvas-node span { font-size: 10px; color: #646970; }
